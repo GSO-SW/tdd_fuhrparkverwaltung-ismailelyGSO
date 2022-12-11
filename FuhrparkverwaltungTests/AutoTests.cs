@@ -11,9 +11,9 @@ namespace FuhrparkverwaltungTests
         public void Fahren_SteigertKilometerstand()
         {
             //Arrange
-            int kilometerstand = 0;
+            double kilometerstand = 0;
             Auto a = new Auto(kilometerstand);
-            int streckeInKilometern = 50;
+            double streckeInKilometern = 50;
 
             //Act
             a.Fahren(streckeInKilometern);
@@ -26,9 +26,9 @@ namespace FuhrparkverwaltungTests
         public void Unveraendert_NegativWert()
         {
             //Arrange
-            int kilometerstand = 50;
+            double kilometerstand = 50;
             Auto a = new Auto(kilometerstand);
-            int streckeInKilometern = -1;
+            double streckeInKilometern = -1;
 
             //Act
             a.Fahren(streckeInKilometern);
@@ -41,11 +41,11 @@ namespace FuhrparkverwaltungTests
         public void Fahren_SinktTank()
         {
             //Arrange
-            int kilometerstand = 50;
-            int tankInhaltInLitern = 10;
-            int verbrauchProHundertKilometer = 4;
+            double kilometerstand = 50;
+            double tankInhaltInLitern = 10;
+            double verbrauchProHundertKilometer = 4;
             Auto a = new Auto(kilometerstand, verbrauchProHundertKilometer, tankInhaltInLitern);
-            int streckeInKilometern = 100;
+            double streckeInKilometern = 100;
 
             //Act
             a.Fahren(streckeInKilometern);
@@ -59,11 +59,11 @@ namespace FuhrparkverwaltungTests
         public void Fahren_SinktTankBisNullLiter()
         {
             //Arrange
-            int kilometerstand = 50;
-            int tankInhaltInLitern = 10;
-            int verbrauchProHundertKilometer = 6;
+            double kilometerstand = 50;
+            double tankInhaltInLitern = 10;
+            double verbrauchProHundertKilometer = 6;
             Auto a = new Auto(kilometerstand, verbrauchProHundertKilometer, tankInhaltInLitern);
-            int streckeInKilometern = 200;
+            double streckeInKilometern = 200;
 
             //Act
             a.Fahren(streckeInKilometern);
@@ -72,5 +72,25 @@ namespace FuhrparkverwaltungTests
             Assert.AreEqual(250, a.Kilometerstand);
             Assert.AreEqual(0, a.TankInhaltInLitern);
         }
+
+        [TestMethod]
+        public void Fahren_BisTankLeer()
+        {
+            //Arrange
+            double kilometerstand = 50;
+            double tankInhaltInLitern = 10;
+            double verbrauchProHundertKilometer = 6;
+            Auto a = new Auto(kilometerstand, verbrauchProHundertKilometer, tankInhaltInLitern);
+            double streckeInKilometern = 200;
+
+            //Act
+            a.Fahren(streckeInKilometern);
+
+            //Assert
+            Assert.AreEqual(175, a.Kilometerstand);
+            Assert.AreEqual(0, a.TankInhaltInLitern);
+        }
+
+
     }
 }

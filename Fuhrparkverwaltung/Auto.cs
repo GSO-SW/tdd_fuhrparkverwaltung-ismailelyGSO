@@ -8,40 +8,40 @@ namespace Fuhrparkverwaltung
 {
     public class Auto
     {
-        private int kilometerstand;
-        private int verbrauchProHundertKilometer;
-        private int tankInhaltInLitern;
+        private double kilometerstand;
+        private double verbrauchProHundertKilometer;
+        private double tankInhaltInLitern;
 
-        public Auto(int kilometerstand)
+        public Auto(double kilometerstand)
         {
             this.kilometerstand = kilometerstand;
         }
 
-        public Auto(int kilometerstand, int verbrauchProHundertKilometer, int tankInhaltInLitern) :this(kilometerstand)
+        public Auto(double kilometerstand, double verbrauchProHundertKilometer, double tankInhaltInLitern) :this(kilometerstand)
         {
             this.verbrauchProHundertKilometer = verbrauchProHundertKilometer;
             this.tankInhaltInLitern = tankInhaltInLitern;
         }
 
-        public int Kilometerstand
+        public double Kilometerstand
         {
             get { return kilometerstand; }
         }
 
-        public int VerbrauchProHundertKilometer
+        public double VerbrauchProHundertKilometer
         {
             get { return verbrauchProHundertKilometer; }
         }
 
-        public int TankInhaltInLitern
+        public double TankInhaltInLitern
         {
             get { return tankInhaltInLitern; }
         }
 
-        public void Fahren(int streckeInKilometer)
+        public void Fahren(double streckeInKilometer)
         {
             if (streckeInKilometer >= 0)
-            { 
+            {
                 kilometerstand = kilometerstand + streckeInKilometer;
                 tankInhaltInLitern = tankInhaltInLitern - ((verbrauchProHundertKilometer * streckeInKilometer) / 100);
                 if (tankInhaltInLitern < 0)
@@ -50,6 +50,29 @@ namespace Fuhrparkverwaltung
                 }
             }
         }
+
+        ////Ansatz zur Aufgabe 5
+        //public void Fahren(double streckeInKilometer)
+        //{
+        //    streckeInKilometer = (tankInhaltInLitern / verbrauchProHundertKilometer) * 100;
+
+        //    if (streckeInKilometer >= 0)
+        //    {
+        //        //Zum zurücksetzen
+        //        double tankInhaltInLiternZwischenSpeicher = tankInhaltInLitern;
+        //        tankInhaltInLitern = tankInhaltInLitern - ((verbrauchProHundertKilometer * streckeInKilometer) / 100);
+        //        if (tankInhaltInLitern >= 0)
+        //        {
+        //            kilometerstand = kilometerstand + streckeInKilometer;
+        //        }
+        //        else
+        //        {
+        //            //Zum zurücksetzen
+        //            tankInhaltInLitern = tankInhaltInLiternZwischenSpeicher;
+        //        }
+
+        //    }
+        //}
     }
 }
 
